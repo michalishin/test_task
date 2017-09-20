@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Deposit;
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use DB;
 
@@ -50,7 +51,8 @@ class DepositController extends Controller
 
             $deposit->transactions()->create([
                 'amount' => $request->sum,
-                'transaction_type_id' => Transaction::INITIAL_TRANSACTION
+                'type_id' => Transaction::INITIAL_TRANSACTION,
+                'date' => Carbon::now()
             ]);
         });
         return redirect('client/' . $request->client_id);

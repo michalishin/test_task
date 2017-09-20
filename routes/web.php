@@ -19,3 +19,5 @@ Route::post('/client', 'ClientController@store');
 
 Route::get('/deposit/{deposit}', 'DepositController@show');
 Route::post('/deposit', 'DepositController@store');
+
+Route::get('/reports', 'ReportController@index');

@@ -1,26 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="client-data">
-        {{$client->name . ' ' . $client->surname . ' ' . $client->age}}
-        @if($client->sex === 'f') Famale @endif
-        @if($client->sex === 'm') Male @endif
+    <div class="panel panel-default" id="new-deposit">
+        <div class="panel-heading">
+            {{$client->name . ' ' . $client->surname}}
+       </div>
+       <div class="panel-body">
+           @include('deposit.form', compact('client'))
+       </div>
     </div>
-    <div id="new-deposit">
-        @include('deposit.form', compact('client'))
-    </div>
-    <div id="deposit-data">
-        Deposits:
-        <ul>
-            @foreach($client->deposits as $deposit)
-                <ul>
-                    <a href="/deposit/{{$deposit->id}}">
-                        #{{$deposit->id}}
-                        Percent: {{$deposit->percent}}
-                        Amount: {{$deposit->amount}}
-                    </a>
-                </ul>
-            @endforeach
-        </ul>
+    <div class="panel panel-default" >
+        <div class="panel-heading">Deposits</div>
+        <div class="panel-body">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Percent
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($client->deposits as $deposit)
+                    <tr>
+                        <td><a href="/deposit/{{$deposit->id}}">{{$deposit->id}}</a></td>
+                        <td>{{$deposit->percent}}</td>
+                        <td>{{$deposit->amount}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
 @endsection

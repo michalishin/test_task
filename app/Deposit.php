@@ -8,6 +8,8 @@ class Deposit extends Model
 {
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    protected $dates = ['date'];
+
     public function client () {
         return $this->belongsTo(Client::class);
     }

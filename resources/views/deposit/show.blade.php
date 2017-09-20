@@ -1,19 +1,37 @@
 @extends('layouts.app')
 
 @section('content')
-    <div id="deposit-data">
-        #{{$deposit->id}}
-        Percent: {{$deposit->percent}}
-        Amount: {{$deposit->amount}}
+    <div class="panel panel-default" id="deposit-data">
+        <div class="panel-heading">
+            #{{$deposit->id}} - {{$deposit->amount}}
+        </div>
+        <div class="panel-body">
+            <h1>Deposits</h1>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($deposit->transactions as $transaction)
+                    <tr>
+                        <td>{{$transaction->id}}</td>
+                        <td>{{$transaction->date}}</td>
+                        <td>{{$transaction->amount}}</td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-    <div id="transactions-data">
-        Transactions:
-        <ul>
-            @foreach($deposit->transactions as $transaction)
-                <li>
-                    #{{$transaction->id}} Amount: {{$transaction->amount}} Date: {{$transaction->created_at}}
-                </li>
-            @endforeach
-        </ul>
-    </div>
+
 @endsection

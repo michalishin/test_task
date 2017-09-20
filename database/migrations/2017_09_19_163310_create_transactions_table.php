@@ -15,12 +15,13 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('transaction_type_id');
+            $table->unsignedInteger('type_id');
             $table->unsignedInteger('deposit_id')
                 ->references('id')
                 ->on('deposits')
                 ->onDelete('cascade');
-            $table->decimal('amount', 5, 2);
+            $table->date('date')->index();
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }

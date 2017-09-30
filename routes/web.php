@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ClientController@index');
+Route::get('/client', 'ClientController@index');
+Route::get('/client/{client}', 'ClientController@show');
+Route::post('/client', 'ClientController@store');
+
+
+Route::get('/deposit/{deposit}', 'DepositController@show');
+Route::post('/deposit', 'DepositController@store');
